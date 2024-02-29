@@ -1,13 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import LoginScreen from "./Apps/Screens/LoginScreen";
+import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 
 export default function App() {
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-red-900">
-        Open up App.js to start working on your app
-      </Text>
-      <StatusBar style="auto" />
-    </View>
+    <ClerkProvider publishableKey="pk_test_dW5iaWFzZWQtYnVubnktNzYuY2xlcmsuYWNjb3VudHMuZGV2JA">
+      <View className="flex-1 bg-white">
+        <StatusBar style="auto" />
+        <SignedIn>
+          <Text>You are Signed in</Text>
+        </SignedIn>
+        <SignedOut>
+          <LoginScreen />
+        </SignedOut>
+      </View>
+    </ClerkProvider>
   );
 }
